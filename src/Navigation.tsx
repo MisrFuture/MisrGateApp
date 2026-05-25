@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { View, Text } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useAuth } from './context/AuthContext';
 import { useTheme } from './context/ThemeContext';
 import { useI18n } from './utils/i18n';
 
 import LoginScreen from './screens/LoginScreen';
+import OnboardingScreen from './screens/OnboardingScreen';
 import HomeScreen from './screens/HomeScreen';
 import DashboardScreen from './screens/DashboardScreen';
 import ApplyScreen from './screens/ApplyScreen';
@@ -50,8 +52,14 @@ function MainTabs() {
 export default function Navigation() {
   const { user, loading } = useAuth();
   const { colors } = useTheme();
+  const [onboarded, setOnboarded] = useState<boolean | null>(null);
 
-  if (loading) return <View style={{ flex: 1, backgroundColor: colors.bg }} />;
+  useEffect(() => {
+    AsyncStorage.getItem('onboarding_complete').then(val => setOnboarded(val === 'true'));
+  }, []);
+
+  if (loading || onboarded === null) return <View style={{ flex: 1, backgroundColor: colors.bg }} />;
+  if (!onboarded) return <OnboardingScreen onFinish={() => setOnboarded(true)} />;
 
   return (
     <NavigationContainer>
