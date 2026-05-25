@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { api } from '../api/client';
 import { User } from '../types';
+import { registerForPushNotifications } from '../utils/notifications';
 
 interface AuthContextType {
   user: User | null;
@@ -32,12 +33,14 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     const res = await api.login({ email, password });
     await api.setToken(res.token);
     setUser(res.user);
+    registerForPushNotifications();
   };
 
   const register = async (data: { email: string; password: string; name: string; nationalId: string; phone: string }) => {
     const res = await api.register(data);
     await api.setToken(res.token);
     setUser(res.user);
+    registerForPushNotifications();
   };
 
   const logout = async () => {
