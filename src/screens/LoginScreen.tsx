@@ -40,10 +40,10 @@ export default function LoginScreen() {
               <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]} placeholder={t('Phone', 'رقم الهاتف')} placeholderTextColor={colors.textMuted} value={phone} onChangeText={setPhone} keyboardType="phone-pad" />
             </>
           )}
-          <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]} placeholder="Email" placeholderTextColor={colors.textMuted} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" />
-          <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]} placeholder={t('Password', 'كلمة المرور')} placeholderTextColor={colors.textMuted} value={password} onChangeText={setPassword} secureTextEntry />
+          <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]} placeholder="Email" placeholderTextColor={colors.textMuted} value={email} onChangeText={setEmail} keyboardType="email-address" autoCapitalize="none" accessibilityLabel="Email input" />
+          <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]} placeholder={t('Password', 'كلمة المرور')} placeholderTextColor={colors.textMuted} value={password} onChangeText={setPassword} secureTextEntry accessibilityLabel="Password input" />
 
-          <TouchableOpacity style={[styles.button, { backgroundColor: colors.accent }]} onPress={handleSubmit} disabled={loading}>
+          <TouchableOpacity style={[styles.button, { backgroundColor: colors.accent }]} onPress={handleSubmit} disabled={loading} accessibilityLabel={isRegister ? 'Register' : 'Login'} accessibilityHint="Submit the form">
             {loading ? <ActivityIndicator color="#fff" /> : <Text style={styles.buttonText}>{isRegister ? t('Register', 'تسجيل') : t('Login', 'دخول')}</Text>}
           </TouchableOpacity>
 

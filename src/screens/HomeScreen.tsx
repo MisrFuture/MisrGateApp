@@ -40,7 +40,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
       {/* Search Bar */}
       <View style={{ paddingHorizontal: 16, paddingTop: 12 }}>
         <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]}
-          placeholder={t('Search services...', 'ابحث عن خدمات...')} placeholderTextColor={colors.textMuted} value={searchQuery} onChangeText={setSearchQuery} />
+          placeholder={t('Search services...', 'ابحث عن خدمات...')} placeholderTextColor={colors.textMuted} value={searchQuery} onChangeText={setSearchQuery}
+          accessibilityLabel="Search services" accessibilityHint="Type to filter services by name" />
       </View>
 
       {/* Announcements */}
@@ -72,7 +73,7 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
         <View style={{ flexDirection: 'row', gap: 8 }}>
           <TextInput style={[styles.input, { flex: 1, backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]}
             placeholder={t('Tracking Code', 'كود التتبع')} placeholderTextColor={colors.textMuted} value={trackCode} onChangeText={setTrackCode} />
-          <TouchableOpacity style={[styles.btn, { backgroundColor: colors.accent }]} onPress={() => navigation.navigate('Track', { code: trackCode })}>
+          <TouchableOpacity style={[styles.btn, { backgroundColor: colors.accent }]} onPress={() => navigation.navigate('Track', { code: trackCode })} accessibilityLabel="Track application" accessibilityHint="Navigates to the tracking screen">
             <Text style={{ color: '#fff', fontWeight: '600' }}>{t('Track', 'تتبع')}</Text>
           </TouchableOpacity>
         </View>
@@ -85,7 +86,8 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
           const label = SERVICE_LABELS[s.key];
           return (
             <TouchableOpacity key={s.key} style={[styles.serviceCard, { backgroundColor: colors.card, borderColor: colors.border }]}
-              onPress={() => navigation.navigate('Apply', { serviceType: s.key })}>
+              onPress={() => navigation.navigate('Apply', { serviceType: s.key })}
+              accessibilityLabel={label?.[t('en', 'ar') as 'en' | 'ar'] || s.key} accessibilityHint="Navigate to service application">
               <View style={[styles.serviceDot, { backgroundColor: colors.accent + '15' }]} />
               <Text style={[styles.serviceName, { color: colors.text }]}>{label?.[t('en', 'ar') as 'en' | 'ar'] || s.key}</Text>
               <TouchableOpacity style={{ position: 'absolute', top: 8, right: 8 }} onPress={async () => {
