@@ -32,6 +32,8 @@ import ReportsScreen from './screens/ReportsScreen';
 import DeleteAccountScreen from './screens/DeleteAccountScreen';
 import EmergencyScreen from './screens/EmergencyScreen';
 import FeedbackScreen from './screens/FeedbackScreen';
+import TermsScreen from './screens/TermsScreen';
+import PrivacyScreen from './screens/PrivacyScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -89,6 +91,8 @@ export default function Navigation() {
             <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: 'Delete Account' }} />
             <Stack.Screen name="Emergency" component={EmergencyScreen} options={{ title: 'Emergency' }} />
             <Stack.Screen name="Feedback" component={FeedbackScreen} options={{ title: 'Feedback' }} />
+            <Stack.Screen name="Terms" component={TermsScreen} options={{ title: 'Terms of Service' }} />
+            <Stack.Screen name="Privacy" component={PrivacyScreen} options={{ title: 'Privacy Policy' }} />
             <Stack.Screen name="Export" component={ExportScreen} options={{ title: 'Export' }} />
             <Stack.Screen name="IDCard" component={IDCardScreen} options={{ title: 'ID Card' }} />
             <Stack.Screen name="NearbyOffices" component={NearbyOfficesScreen} options={{ title: 'Nearby Offices' }} />
