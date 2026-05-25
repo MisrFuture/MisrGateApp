@@ -4,6 +4,7 @@
     "slug": "MisrGateApp",
     "version": "1.0.0",
     "orientation": "portrait",
+    "splash": { "backgroundColor": "#c51b29", "resizeMode": "contain" },
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
