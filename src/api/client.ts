@@ -1,10 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 import { Application, Appointment, Complaint, Notification, User, TimelineEvent, Announcement, ServiceType } from '../types';
 
 const API_BASE = 'http://10.0.2.2:5000/api';
 
 async function request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
-  const token = await AsyncStorage.getItem('misrgate_token');
+  const token = await SecureStore.getItemAsync('misrgate_token');
   const headers: Record<string, string> = { 'Content-Type': 'application/json', ...(token ? { Authorization: `Bearer ${token}` } : {}), ...(options.headers as Record<string, string> || {}) };
   const res = await fetch(`${API_BASE}${endpoint}`, { ...options, headers });
   const data = await res.json();
@@ -13,9 +13,9 @@ async function request<T>(endpoint: string, options: RequestInit = {}): Promise<
 }
 
 export const api = {
-  setToken: (token: string) => AsyncStorage.setItem('misrgate_token', token),
-  getToken: () => AsyncStorage.getItem('misrgate_token'),
-  clearToken: () => AsyncStorage.removeItem('misrgate_token'),
+  setToken: (token: string) => SecureStore.setItemAsync('misrgate_token', token),
+  getToken: () => SecureStore.getItemAsync('misrgate_token'),
+  clearToken: () => SecureStore.deleteItemAsync('misrgate_token'),
 
   login: (body: { email: string; password: string }) => request<{ token: string; user: User }>('/auth/login', { method: 'POST', body: JSON.stringify(body) }),
   register: (body: { email: string; password: string; name: string; nationalId: string; phone: string }) => request<{ token: string; user: User }>('/auth/register', { method: 'POST', body: JSON.stringify(body) }),
