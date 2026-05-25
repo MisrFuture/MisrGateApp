@@ -29,6 +29,7 @@ import ExportScreen from './screens/ExportScreen';
 import IDCardScreen from './screens/IDCardScreen';
 import NearbyOfficesScreen from './screens/NearbyOfficesScreen';
 import ReportsScreen from './screens/ReportsScreen';
+import DeleteAccountScreen from './screens/DeleteAccountScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -83,6 +84,7 @@ export default function Navigation() {
             {user.role === 'ADMIN' && <Stack.Screen name="Reports" component={ReportsScreen} options={{ title: 'Reports' }} />}
             <Stack.Screen name="Support" component={SupportScreen} options={{ title: 'Support' }} />
             <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Change Password' }} />
+            <Stack.Screen name="DeleteAccount" component={DeleteAccountScreen} options={{ title: 'Delete Account' }} />
             <Stack.Screen name="Export" component={ExportScreen} options={{ title: 'Export' }} />
             <Stack.Screen name="IDCard" component={IDCardScreen} options={{ title: 'ID Card' }} />
             <Stack.Screen name="NearbyOffices" component={NearbyOfficesScreen} options={{ title: 'Nearby Offices' }} />

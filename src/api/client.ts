@@ -56,4 +56,5 @@ export const api = {
   adminGetReport: (period?: string) => request<{ report: { period: string; totalApplications: number; totalUsers: number; byService: Record<string, number>; byStatus: Record<string, number> } }>(`/admin/report${period ? `?period=${period}` : ''}`),
 
   changePassword: (body: { currentPassword: string; newPassword: string }) => request<{ message: string }>('/auth/password', { method: 'PUT', body: JSON.stringify(body) }),
+  deleteAccount: () => request<{ message: string }>('/auth/delete-account', { method: 'DELETE' }),
 };
