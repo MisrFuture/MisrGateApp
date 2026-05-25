@@ -54,4 +54,6 @@ export const api = {
   adminCreateAnnouncement: (body: { title: string; message: string }) => request<{ message: string; announcement: Announcement }>('/admin/announcements', { method: 'POST', body: JSON.stringify(body) }),
   adminDeleteAnnouncement: (id: string) => request<{ message: string }>(`/admin/announcements/${id}`, { method: 'DELETE' }),
   adminGetReport: (period?: string) => request<{ report: { period: string; totalApplications: number; totalUsers: number; byService: Record<string, number>; byStatus: Record<string, number> } }>(`/admin/report${period ? `?period=${period}` : ''}`),
+
+  changePassword: (body: { currentPassword: string; newPassword: string }) => request<{ message: string }>('/auth/password', { method: 'PUT', body: JSON.stringify(body) }),
 };

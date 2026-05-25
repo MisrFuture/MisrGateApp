@@ -24,6 +24,7 @@ import DirectoryScreen from './screens/DirectoryScreen';
 import AdminScreen from './screens/AdminScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import SupportScreen from './screens/SupportScreen';
+import ChangePasswordScreen from './screens/ChangePasswordScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -76,6 +77,7 @@ export default function Navigation() {
             <Stack.Screen name="Timeline" component={TimelineScreen} options={{ title: 'Timeline' }} />
             {user.role === 'ADMIN' && <Stack.Screen name="Admin" component={AdminScreen} options={{ title: 'Admin' }} />}
             <Stack.Screen name="Support" component={SupportScreen} options={{ title: 'Support' }} />
+            <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Change Password' }} />
           </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
