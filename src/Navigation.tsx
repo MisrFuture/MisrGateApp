@@ -27,6 +27,7 @@ import SupportScreen from './screens/SupportScreen';
 import ChangePasswordScreen from './screens/ChangePasswordScreen';
 import ExportScreen from './screens/ExportScreen';
 import IDCardScreen from './screens/IDCardScreen';
+import NearbyOfficesScreen from './screens/NearbyOfficesScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -82,6 +83,7 @@ export default function Navigation() {
             <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} options={{ title: 'Change Password' }} />
             <Stack.Screen name="Export" component={ExportScreen} options={{ title: 'Export' }} />
             <Stack.Screen name="IDCard" component={IDCardScreen} options={{ title: 'ID Card' }} />
+            <Stack.Screen name="NearbyOffices" component={NearbyOfficesScreen} options={{ title: 'Nearby Offices' }} />
           </>
         ) : (
           <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
