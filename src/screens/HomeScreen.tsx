@@ -23,13 +23,26 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
     if (user) api.getFavorites().then(r => setFavorites(r.favorites)).catch(() => {});
   }, [user]);
 
-  const services: { key: ServiceType }[] = [
+  const allServices: { key: ServiceType }[] = [
     { key: 'NATIONAL_ID' }, { key: 'MILITARY_EXEMPTION' }, { key: 'BIRTH_CERTIFICATE' }, { key: 'PASSPORT' },
     { key: 'TAX_PAYMENT' }, { key: 'TRAFFIC_FINE' }, { key: 'HEALTH_INSURANCE' }, { key: 'SOCIAL_INSURANCE' },
   ];
+  const [searchQuery, setSearchQuery] = useState('');
+  const services = searchQuery
+    ? allServices.filter(s => {
+        const label = SERVICE_LABELS[s.key]?.[t('en', 'ar') as 'en' | 'ar'] || s.key;
+        return label.toLowerCase().includes(searchQuery.toLowerCase());
+      })
+    : allServices;
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.bg }]}>
+      {/* Search Bar */}
+      <View style={{ paddingHorizontal: 16, paddingTop: 12 }}>
+        <TextInput style={[styles.input, { backgroundColor: colors.input, color: colors.text, borderColor: colors.border }]}
+          placeholder={t('Search services...', 'ابحث عن خدمات...')} placeholderTextColor={colors.textMuted} value={searchQuery} onChangeText={setSearchQuery} />
+      </View>
+
       {/* Announcements */}
       {announcements.map(a => (
         <View key={a.id} style={[styles.announcement, { backgroundColor: colors.gold + '18', borderColor: colors.gold }]}>
