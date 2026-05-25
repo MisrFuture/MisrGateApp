@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { useTheme } from '../context/ThemeContext';
 import { useI18n } from '../utils/i18n';
+import { promptRateApp } from '../utils/rate';
 
 export default function SettingsScreen() {
   const { colors, dark, toggle } = useTheme();
@@ -22,6 +23,13 @@ export default function SettingsScreen() {
           <Text style={{ color: colors.text, fontSize: 15 }}>{t('Language', 'اللغة')}</Text>
           <TouchableOpacity onPress={toggleLang} style={[styles.langBtn, { borderColor: colors.border }]}>
             <Text style={{ color: colors.text, fontWeight: '600' }}>{lang === 'en' ? '🇪🇬 العربية' : '🇬🇧 English'}</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.divider, { backgroundColor: colors.border }]} />
+        <View style={styles.row}>
+          <Text style={{ color: colors.text, fontSize: 15 }}>{t('Rate App', 'تقييم التطبيق')}</Text>
+          <TouchableOpacity onPress={promptRateApp} style={[styles.langBtn, { borderColor: colors.border }]}>
+            <Text style={{ color: colors.text, fontWeight: '600' }}>⭐</Text>
           </TouchableOpacity>
         </View>
       </View>
