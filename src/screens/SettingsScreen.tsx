@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-nati
 import { useTheme } from '../context/ThemeContext';
 import { useI18n } from '../utils/i18n';
 import { promptRateApp } from '../utils/rate';
+import { shareApp } from '../utils/share';
 
 export default function SettingsScreen() {
   const { colors, dark, toggle } = useTheme();
@@ -30,6 +31,13 @@ export default function SettingsScreen() {
           <Text style={{ color: colors.text, fontSize: 15 }}>{t('Rate App', 'تقييم التطبيق')}</Text>
           <TouchableOpacity onPress={promptRateApp} style={[styles.langBtn, { borderColor: colors.border }]}>
             <Text style={{ color: colors.text, fontWeight: '600' }}>⭐</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.divider, { backgroundColor: colors.border }]} />
+        <View style={styles.row}>
+          <Text style={{ color: colors.text, fontSize: 15 }}>{t('Share App', 'مشاركة التطبيق')}</Text>
+          <TouchableOpacity onPress={shareApp} style={[styles.langBtn, { borderColor: colors.border }]}>
+            <Text style={{ color: colors.text, fontWeight: '600' }}>📤</Text>
           </TouchableOpacity>
         </View>
       </View>
