@@ -17,6 +17,8 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async () => {
+    if (!email.includes('@') || !email.includes('.')) { Alert.alert('Error', 'Please enter a valid email'); setLoading(false); return; }
+    if (password.length < 6) { Alert.alert('Error', 'Password must be at least 6 characters'); setLoading(false); return; }
     setLoading(true);
     try {
       if (isRegister) await register({ email, password, name, nationalId, phone });

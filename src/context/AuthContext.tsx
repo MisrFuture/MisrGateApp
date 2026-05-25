@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { api } from '../api/client';
 import { User } from '../types';
 import { registerForPushNotifications } from '../utils/notifications';
@@ -46,6 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const logout = async () => {
     try { await api.logout(); } catch {}
     await api.clearToken();
+    await AsyncStorage.multiRemove(['onboarding_complete', 'misrgate_theme', 'misrgate_lang']);
     setUser(null);
   };
 
